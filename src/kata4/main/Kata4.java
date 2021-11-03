@@ -9,12 +9,33 @@ import kata4.view.MailHistogramBuilder;
 import kata4.view.MailListReader;
 
 public class Kata4 {
+    public static String fileName;
+    public static List<Mail> list;
+    public static Histogram histogram;
+    public static HistogramDisplay histogramDisplay;
+    
     public static void main(String[] args) throws IOException {
-        
-        List<Mail> list = MailListReader.read("email.txt");
-        Histogram histogram = MailHistogramBuilder.build(list);
-        HistogramDisplay histo = new HistogramDisplay(histogram);
-        histo.execute();
+        execute();
+    }
+    
+    public static void execute() throws IOException{
+        input();
+        procces();
+        output();
+    }
+    
+    public static void input() throws IOException{
+        fileName= "email.txt";
+        list = MailListReader.read(fileName);
+    }
+    
+    public static void procces(){
+        histogram = MailHistogramBuilder.build(list);
+    }
+    
+    public static void output(){
+        histogramDisplay = new HistogramDisplay(histogram);
+        histogramDisplay.execute();
     }
     
 }
